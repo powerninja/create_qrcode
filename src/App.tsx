@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import QRious from "qrious";
 
-function App() {
-  return <div className="App"></div>;
-}
+type Memotype = {
+  url: string;
+};
 
-export default App;
+export const App = () => {
+  const [urlLink, setUrlLink] = useState<Memotype>({ url: "" });
+  return (
+    <div>
+      <h1>QRコード生成</h1>
+      <input
+        type="text"
+        value={urlLink.url}
+        onChange={(event) => setUrlLink({ url: event.target.value })}
+      ></input>
+      {urlLink.url}
+      <button>生成</button>
+    </div>
+  );
+};
