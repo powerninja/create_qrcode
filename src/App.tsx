@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import QRious from "qrious";
+import QRCode from "react-qr-code";
 
 type Memotype = {
   url: string;
@@ -18,6 +18,21 @@ export const App = () => {
       ></input>
       {urlLink.url}
       <button>生成</button>
+      <div
+        style={{
+          height: "auto",
+          margin: "0 auto",
+          maxWidth: 64,
+          width: "100%",
+        }}
+      >
+        <QRCode
+          size={256}
+          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          value={urlLink.url}
+          viewBox={`0 0 256 256`}
+        />
+      </div>
     </div>
   );
 };
