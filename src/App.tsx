@@ -38,7 +38,7 @@ export const App = () => {
         <QRNormal qrcode={qrcode} />
         <QRDsj qrcode={qrcode} />
         <QRBubble qrcode={qrcode} />
-        <QR25D qrcode={qrcode} />
+        <QR25D value={urlLink.url} />
         {/* <QRResImage qrcode={qrcode} image="./img/nihonchizu-hakuchizu.png" /> */}
       </div>
     </div>
