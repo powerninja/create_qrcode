@@ -61,32 +61,41 @@ export const App = () => {
         />
       </div>
 
-      <button
-        className="btn btn-primary ms-3"
-        onClick={generateQrCode}
-        style={{
-          height: 'auto',
-          padding: '20',
-          width: '100%',
-          margin: '20 auto',
-          maxWidth: 200,
-        }}
-      >
-        生成
-      </button>
-      <button
-        className="btn btn-danger"
-        onClick={clearQrCode}
-        style={{
-          height: 'auto',
-          padding: '20',
-          width: '100%',
-          margin: '20 auto',
-          maxWidth: 200,
-        }}
-      >
-        クリア
-      </button>
+      <div className="button-container">
+        <button
+          className="btn btn-primary ms-3"
+          onClick={generateQrCode}
+          style={{
+            height: 'auto',
+            padding: '20',
+            maxWidth: 200,
+          }}
+        >
+          生成
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={clearQrCode}
+          style={{
+            height: 'auto',
+            padding: '20',
+            maxWidth: 200,
+          }}
+        >
+          クリア
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={clearQrCode}
+          style={{
+            height: 'auto',
+            padding: '20',
+            maxWidth: 200,
+          }}
+        >
+          ダウンロード
+        </button>
+      </div>
 
       <div
         style={{
