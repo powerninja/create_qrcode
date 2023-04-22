@@ -16,10 +16,10 @@ export const App = () => {
 
   const generateQrCode = () => {
     console.log(urlLink.url.indexOf('http', 0));
-    if (urlLink.url.indexOf('http', 0) === -1) {
-      alert('URLを入力してください');
-      return;
-    }
+    // if (urlLink.url.indexOf('http', 0) === -1) {
+    //   alert('URLを入力してください');
+    //   return;
+    // }
     setVisible(true);
   };
 
@@ -38,7 +38,7 @@ export const App = () => {
           width: '100%',
         }}
       >
-        <h1>QRコード生成</h1>
+        <h1>QRコード作成</h1>
 
         <p>URLを入力してください</p>
       </div>
@@ -97,13 +97,8 @@ export const App = () => {
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
-        {/* <QRCode
-          size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value={urlLink.url}
-          viewBox={`0 0 256 256`}
-        />
-        <QRNormal qrcode={qrcode} />
+        <QRCode size={256} style={{ height: 'auto', maxWidth: '100%', width: '100%' }} value={urlLink.url} viewBox={`0 0 256 256`} />
+        {/* <QRNormal qrcode={qrcode} />
         <QRDsj qrcode={qrcode} />
         <QRBubble qrcode={qrcode} /> */}
         <QR25D value={urlLink.url} />
