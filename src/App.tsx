@@ -15,6 +15,11 @@ export const App = () => {
   const qrcode = encodeData({ text: "react-qrbtf" });
 
   const generateQrCode = () => {
+    console.log(urlLink.url.indexOf("http", 0));
+    if (urlLink.url.indexOf("http", 0) === -1) {
+      alert("URLを入力してください");
+      return;
+    }
     setVisible(true);
   };
 
@@ -26,13 +31,54 @@ export const App = () => {
   return (
     <div>
       <h1>QRコード生成</h1>
-      <input
-        type="text"
-        value={urlLink.url}
-        onChange={(event) => setUrlLink({ url: event.target.value })}
-      ></input>
-      <button onClick={generateQrCode}>生成</button>
-      <button onClick={clearQrCode}>クリア</button>
+
+      <p>URLを入力してください</p>
+      <div
+        className="input-group mb-3"
+        style={{
+          height: "auto",
+          margin: "0 auto",
+          maxWidth: 200,
+          width: "100%",
+        }}
+      >
+        <input
+          type="text"
+          className="form-control"
+          placeholder="https://example.com"
+          aria-describedby="basic-addon2"
+          value={urlLink.url}
+          onChange={(event) => setUrlLink({ url: event.target.value })}
+        />
+      </div>
+
+      <button
+        className="btn btn-primary ms-3"
+        onClick={generateQrCode}
+        style={{
+          height: "auto",
+          padding: "20",
+          width: "100%",
+          margin: "20 auto",
+          maxWidth: 200,
+        }}
+      >
+        生成
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={clearQrCode}
+        style={{
+          height: "auto",
+          padding: "20",
+          width: "100%",
+          margin: "20 auto",
+          maxWidth: 200,
+        }}
+      >
+        クリア
+      </button>
+
       <div
         style={{
           height: "auto",
