@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import "./App.css";
-import QRCode from "react-qr-code";
-import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from "react-qrbtf";
-import { encodeData } from "react-qrbtf";
-import { Button } from "react-bootstrap";
+import React, { useState } from 'react';
+import './App.css';
+import QRCode from 'react-qr-code';
+import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from 'react-qrbtf';
+import { encodeData } from 'react-qrbtf';
+import { Button } from 'react-bootstrap';
 
 type Memotype = {
   url: string;
 };
 
 export const App = () => {
-  const [urlLink, setUrlLink] = useState<Memotype>({ url: "" });
+  const [urlLink, setUrlLink] = useState<Memotype>({ url: '' });
   const [visible, setVisible] = useState<boolean>(false);
-  const qrcode = encodeData({ text: "react-qrbtf" });
+  const qrcode = encodeData({ text: 'react-qrbtf' });
 
   const generateQrCode = () => {
-    console.log(urlLink.url.indexOf("http", 0));
-    if (urlLink.url.indexOf("http", 0) === -1) {
-      alert("URLを入力してください");
+    console.log(urlLink.url.indexOf('http', 0));
+    if (urlLink.url.indexOf('http', 0) === -1) {
+      alert('URLを入力してください');
       return;
     }
     setVisible(true);
@@ -25,21 +25,30 @@ export const App = () => {
 
   const clearQrCode = () => {
     setVisible(false);
-    setUrlLink({ url: "" });
+    setUrlLink({ url: '' });
   };
 
   return (
     <div>
-      <h1>QRコード生成</h1>
+      <div
+        style={{
+          height: 'auto',
+          margin: '0 auto',
+          maxWidth: 300,
+          width: '100%',
+        }}
+      >
+        <h1>QRコード生成</h1>
 
-      <p>URLを入力してください</p>
+        <p>URLを入力してください</p>
+      </div>
       <div
         className="input-group mb-3"
         style={{
-          height: "auto",
-          margin: "0 auto",
-          maxWidth: 200,
-          width: "100%",
+          height: 'auto',
+          margin: '0 auto',
+          maxWidth: 300,
+          width: '100%',
         }}
       >
         <input
@@ -56,10 +65,10 @@ export const App = () => {
         className="btn btn-primary ms-3"
         onClick={generateQrCode}
         style={{
-          height: "auto",
-          padding: "20",
-          width: "100%",
-          margin: "20 auto",
+          height: 'auto',
+          padding: '20',
+          width: '100%',
+          margin: '20 auto',
           maxWidth: 200,
         }}
       >
@@ -69,10 +78,10 @@ export const App = () => {
         className="btn btn-danger"
         onClick={clearQrCode}
         style={{
-          height: "auto",
-          padding: "20",
-          width: "100%",
-          margin: "20 auto",
+          height: 'auto',
+          padding: '20',
+          width: '100%',
+          margin: '20 auto',
           maxWidth: 200,
         }}
       >
@@ -81,11 +90,11 @@ export const App = () => {
 
       <div
         style={{
-          height: "auto",
-          margin: "0 auto",
+          height: 'auto',
+          margin: '0 auto',
           maxWidth: 200,
-          width: "100%",
-          visibility: visible ? "visible" : "hidden",
+          width: '100%',
+          visibility: visible ? 'visible' : 'hidden',
         }}
       >
         {/* <QRCode
