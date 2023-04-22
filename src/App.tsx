@@ -14,19 +14,24 @@ export const App = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const qrcode = encodeData({ text: 'react-qrbtf' });
 
+  //QRコード生成
   const generateQrCode = () => {
     console.log(urlLink.url.indexOf('http', 0));
-    // if (urlLink.url.indexOf('http', 0) === -1) {
-    //   alert('URLを入力してください');
-    //   return;
-    // }
+    if (urlLink.url.indexOf('http', 0) === -1) {
+      alert('URLを入力してください');
+      return;
+    }
     setVisible(true);
   };
 
+  //表示していたQRコードを非表示
   const clearQrCode = () => {
     setVisible(false);
     setUrlLink({ url: '' });
   };
+
+  //生成したQRコードをダウンロード
+  const downloadQrCode = () => {};
 
   return (
     <div>
@@ -86,7 +91,7 @@ export const App = () => {
         </button>
         <button
           className="btn btn-secondary"
-          onClick={clearQrCode}
+          onClick={downloadQrCode}
           style={{
             height: 'auto',
             padding: '20',
@@ -106,7 +111,7 @@ export const App = () => {
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
-        <QRCode size={256} style={{ height: 'auto', maxWidth: '100%', width: '100%' }} value={urlLink.url} viewBox={`0 0 256 256`} />
+        {/* <QRCode size={256} style={{ height: 'auto', maxWidth: '100%', width: '100%' }} value={urlLink.url} viewBox={`0 0 256 256`} /> */}
         {/* <QRNormal qrcode={qrcode} />
         <QRDsj qrcode={qrcode} />
         <QRBubble qrcode={qrcode} /> */}
