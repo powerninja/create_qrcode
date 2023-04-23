@@ -149,13 +149,11 @@ export const App = () => {
         }}
       >
         <div ref={svgRef}>
-          {/* <QRNormal qrcode={qrcode} />
-        <QRDsj qrcode={qrcode} />
-        <QRBubble qrcode={qrcode} /> */}
+          <QRDsj value={urlLink.url} />
+          <QRBubble value={urlLink.url} />
           <QRNormal value={urlLink.url} />
-          {/* <QR25D value={urlLink.url} /> */}
+          <QR25D value={urlLink.url} />
         </div>
-        {/* <QRResImage qrcode={qrcode} image="./img/nihonchizu-hakuchizu.png" /> */}
       </div>
     </div>
   );
