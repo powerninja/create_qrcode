@@ -1,24 +1,21 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
-import QRCode from 'react-qr-code';
-import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from 'react-qrbtf';
 
 //QRコード生成ライブラリ https://github.com/ciaochaos/qrbtf
-import { encodeData } from 'react-qrbtf';
+import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from 'react-qrbtf';
+
 //SVGを画像に変換するライブラリ https://github.com/canvg/canvg
 import { Canvg } from 'canvg';
 
-type Memotype = {
+type Linktype = {
   url: string;
 };
 
 export const App = () => {
-  const [urlLink, setUrlLink] = useState<Memotype>({ url: '' });
+  const [urlLink, setUrlLink] = useState<Linktype>({ url: '' });
   const [visible, setVisible] = useState<boolean>(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
-  const svgRef = useRef<any>(null);
-  const hiddenCanvasRef = useRef<any>(null);
-  const qrcode = encodeData({ text: 'react-qrbtf' });
+  const svgRef = useRef<HTMLDivElement | null>(null);
 
   //QRコード生成
   const generateQrCode = () => {
@@ -39,30 +36,32 @@ export const App = () => {
   const downloadQrCode = async () => {
     if (svgRef.current) {
       const svgElement = svgRef.current.querySelector('svg');
-      const svgData = new XMLSerializer().serializeToString(svgElement);
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
 
-      if (ctx) {
-        // SVG要素の大きさに合わせてキャンバスサイズを設定する
-        const svgWidth = svgElement.viewBox.baseVal.width;
-        const svgHeight = svgElement.viewBox.baseVal.height;
+      if (svgElement) {
+        const svgData = new XMLSerializer().serializeToString(svgElement);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          // SVG要素の大きさに合わせてキャンバスサイズを設定する
+          const svgWidth = svgElement.viewBox.baseVal.width;
+          const svgHeight = svgElement.viewBox.baseVal.height;
 
-        // 解像度設定
-        const scale = 10;
+          // 解像度設定
+          const scale = 10;
 
-        canvas.width = svgWidth * scale;
-        canvas.height = svgHeight * scale;
+          canvas.width = svgWidth * scale;
+          canvas.height = svgHeight * scale;
 
-        // stringをDocumentに型変換
-        const parser = new DOMParser();
-        const svgDocument = parser.parseFromString(svgData, 'image/svg+xml');
-        // canvg を使ってSVGデータをcanvasに描画
-        const canvgInstance = new Canvg(ctx, svgDocument);
-        await canvgInstance.start();
+          // stringをDocumentに型変換
+          const parser = new DOMParser();
+          const svgDocument = parser.parseFromString(svgData, 'image/svg+xml');
+          // canvg を使ってSVGデータをcanvasに描画
+          const canvgInstance = new Canvg(ctx, svgDocument);
+          await canvgInstance.start();
 
-        const pngUrl = canvas.toDataURL('image/png');
-        setDownloadUrl(pngUrl);
+          const pngUrl = canvas.toDataURL('image/png');
+          setDownloadUrl(pngUrl);
+        }
       } else {
         console.error('CanvasRenderingContext2D could not be created.');
       }
