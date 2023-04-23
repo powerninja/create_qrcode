@@ -11,6 +11,7 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "bootstrap": "^5.2.3",
+    "canvg": "^4.0.1",
     "qrious": "^4.0.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
