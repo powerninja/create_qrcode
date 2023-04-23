@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import QRCode from 'react-qr-code';
 import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from 'react-qrbtf';
@@ -12,6 +12,8 @@ type Memotype = {
 export const App = () => {
   const [urlLink, setUrlLink] = useState<Memotype>({ url: '' });
   const [visible, setVisible] = useState<boolean>(false);
+  const [downloadUrl, setDownloadUrl] = useState<string>('');
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const qrcode = encodeData({ text: 'react-qrbtf' });
 
   //QRコード生成
@@ -31,7 +33,12 @@ export const App = () => {
   };
 
   //生成したQRコードをダウンロード
-  const downloadQrCode = () => {};
+  const downloadQrCode = () => {
+    if (canvasRef.current) {
+      const dataUrl = canvasRef.current.toDataURL('image/png');
+      setDownloadUrl(dataUrl);
+    }
+  };
 
   return (
     <div>
@@ -89,8 +96,10 @@ export const App = () => {
         >
           クリア
         </button>
-        <button
+        <a
           className="btn btn-secondary"
+          download="qr-code.png"
+          href={downloadUrl}
           onClick={downloadQrCode}
           style={{
             height: 'auto',
@@ -99,7 +108,7 @@ export const App = () => {
           }}
         >
           ダウンロード
-        </button>
+        </a>
       </div>
 
       <div
