@@ -13,12 +13,11 @@ export const App = () => {
   const [urlLink, setUrlLink] = useState<Memotype>({ url: '' });
   const [visible, setVisible] = useState<boolean>(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<any>(null);
   const qrcode = encodeData({ text: 'react-qrbtf' });
 
   //QRコード生成
   const generateQrCode = () => {
-    console.log(urlLink.url.indexOf('http', 0));
     if (urlLink.url.indexOf('http', 0) === -1) {
       alert('URLを入力してください');
       return;
@@ -34,9 +33,11 @@ export const App = () => {
 
   //生成したQRコードをダウンロード
   const downloadQrCode = () => {
-    if (canvasRef.current) {
-      const dataUrl = canvasRef.current.toDataURL('image/png');
-      setDownloadUrl(dataUrl);
+    if (svgRef.current) {
+      const svgData = new XMLSerializer().serializeToString(svgRef.current);
+      const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+      const svgUrl = URL.createObjectURL(svgBlob);
+      setDownloadUrl(svgUrl);
     }
   };
 
@@ -98,7 +99,7 @@ export const App = () => {
         </button>
         <a
           className="btn btn-secondary"
-          download="qr-code.png"
+          download="qr-code.svg"
           href={downloadUrl}
           onClick={downloadQrCode}
           style={{
@@ -120,11 +121,13 @@ export const App = () => {
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
-        {/* <QRCode size={256} style={{ height: 'auto', maxWidth: '100%', width: '100%' }} value={urlLink.url} viewBox={`0 0 256 256`} /> */}
-        {/* <QRNormal qrcode={qrcode} />
+        <div ref={svgRef}>
+          {/* <QRCode size={256} style={{ height: 'auto', maxWidth: '100%', width: '100%' }} value={urlLink.url} viewBox={`0 0 256 256`} /> */}
+          {/* <QRNormal qrcode={qrcode} />
         <QRDsj qrcode={qrcode} />
         <QRBubble qrcode={qrcode} /> */}
-        <QR25D value={urlLink.url} />
+          <QR25D value={urlLink.url} />
+        </div>
         {/* <QRResImage qrcode={qrcode} image="./img/nihonchizu-hakuchizu.png" /> */}
       </div>
     </div>
