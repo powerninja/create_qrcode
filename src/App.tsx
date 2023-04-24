@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './App.css';
 
 //QRコード生成ライブラリ https://github.com/ciaochaos/qrbtf
-import { QR25D, QRResImage, QRBubble, QRDsj, QRNormal } from 'react-qrbtf';
+import { QR25D, QRRandRect, QRBubble, QRDsj, QRNormal, QRFunc, QRLine } from 'react-qrbtf';
 
 //SVGを画像に変換するライブラリ https://github.com/canvg/canvg
 import { Canvg } from 'canvg';
@@ -149,10 +149,13 @@ export const App = () => {
         }}
       >
         <div ref={svgRef} className="d-flex flex-row">
+          <QRNormal value={urlLink.url} className="my-box w-25" />
           <QRDsj value={urlLink.url} className="my-box w-25" />
           <QRBubble value={urlLink.url} className="my-box w-25" />
-          <QRNormal value={urlLink.url} className="my-box w-25" />
           <QR25D value={urlLink.url} className="my-box w-25" />
+          <QRRandRect value={urlLink.url} className="my-box w-25" />
+          <QRFunc value={urlLink.url} funcType={'B'} className="my-box w-25" />
+          <QRLine value={urlLink.url} className="my-box w-25" />
         </div>
       </div>
     </div>
