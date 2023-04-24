@@ -143,16 +143,16 @@ export const App = () => {
         style={{
           height: 'auto',
           margin: '0 auto',
-          maxWidth: 200,
+          maxWidth: 800,
           width: '100%',
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
-        <div ref={svgRef}>
-          <QRDsj value={urlLink.url} />
-          <QRBubble value={urlLink.url} />
-          <QRNormal value={urlLink.url} />
-          <QR25D value={urlLink.url} />
+        <div ref={svgRef} className="d-flex flex-row">
+          <QRDsj value={urlLink.url} className="my-box w-25" />
+          <QRBubble value={urlLink.url} className="my-box w-25" />
+          <QRNormal value={urlLink.url} className="my-box w-25" />
+          <QR25D value={urlLink.url} className="my-box w-25" />
         </div>
       </div>
     </div>
