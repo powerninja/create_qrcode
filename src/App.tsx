@@ -68,6 +68,10 @@ export const App = () => {
     }
   };
 
+  const test = () => {
+    console.log('謳歌されました');
+  };
+
   return (
     <div>
       <div
@@ -149,13 +153,29 @@ export const App = () => {
         }}
       >
         <div ref={svgRef} className="d-flex flex-row">
-          <QRNormal value={urlLink.url} className="my-box w-25" />
-          <QRDsj value={urlLink.url} className="my-box w-25" />
-          <QRBubble value={urlLink.url} className="my-box w-25" />
-          <QR25D value={urlLink.url} className="my-box w-25" />
-          <QRRandRect value={urlLink.url} className="my-box w-25" />
-          <QRFunc value={urlLink.url} funcType={'B'} className="my-box w-25" />
-          <QRLine value={urlLink.url} className="my-box w-25" />
+          <div className="my-box w-25" onClick={test}>
+            {' '}
+            {/* onClick ハンドラを追加 */}
+            <QRNormal value={urlLink.url} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QRDsj value={urlLink.url} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QRBubble value={urlLink.url} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QR25D value={urlLink.url} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QRRandRect value={urlLink.url} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QRFunc value={urlLink.url} funcType={'B'} />
+          </div>
+          <div className="my-box w-25" onClick={test}>
+            <QRLine value={urlLink.url} />
+          </div>
         </div>
       </div>
     </div>
