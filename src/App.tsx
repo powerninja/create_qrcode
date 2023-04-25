@@ -11,11 +11,32 @@ type Linktype = {
   url: string;
 };
 
+type BgColor = {
+  color0: string;
+  color1: string;
+  color2: string;
+  color3: string;
+  color4: string;
+  color5: string;
+  color6: string;
+};
+
 export const App = () => {
   const [urlLink, setUrlLink] = useState<Linktype>({ url: '' });
   const [visible, setVisible] = useState<boolean>(false);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
   const svgRef = useRef<HTMLDivElement | null>(null);
+
+  //QRコードが選択された際に色を変更
+  const [qrCodebgColor, setqrCodebgColor] = useState<BgColor>({
+    color0: '',
+    color1: '',
+    color2: '',
+    color3: '',
+    color4: '',
+    color5: '',
+    color6: '',
+  });
 
   //QRコード生成
   const generateQrCode = () => {
@@ -68,8 +89,30 @@ export const App = () => {
     }
   };
 
-  const test = () => {
-    console.log('謳歌されました');
+  const setQrcodeStyle = (qrnum: number) => {
+    switch (qrnum) {
+      case 0:
+        setqrCodebgColor({ color0: 'gray', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        break;
+      case 1:
+        setqrCodebgColor({ color0: '', color1: 'gray', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        break;
+      case 2:
+        setqrCodebgColor({ color0: '', color1: '', color2: 'gray', color3: '', color4: '', color5: '', color6: '' });
+        break;
+      case 3:
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: 'gray', color4: '', color5: '', color6: '' });
+        break;
+      case 4:
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: 'gray', color5: '', color6: '' });
+        break;
+      case 5:
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: 'gray', color6: '' });
+        break;
+      case 6:
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '', color6: 'gray' });
+        break;
+    }
   };
 
   return (
@@ -153,27 +196,25 @@ export const App = () => {
         }}
       >
         <div ref={svgRef} className="d-flex flex-row">
-          <div className="my-box w-25" onClick={test}>
-            {' '}
-            {/* onClick ハンドラを追加 */}
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(0)} style={{ backgroundColor: qrCodebgColor.color0 }}>
             <QRNormal value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(1)} style={{ backgroundColor: qrCodebgColor.color1 }}>
             <QRDsj value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(2)} style={{ backgroundColor: qrCodebgColor.color2 }}>
             <QRBubble value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(3)} style={{ backgroundColor: qrCodebgColor.color3 }}>
             <QR25D value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(4)} style={{ backgroundColor: qrCodebgColor.color4 }}>
             <QRRandRect value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(5)} style={{ backgroundColor: qrCodebgColor.color5 }}>
             <QRFunc value={urlLink.url} funcType={'B'} />
           </div>
-          <div className="my-box w-25" onClick={test}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(6)} style={{ backgroundColor: qrCodebgColor.color6 }}>
             <QRLine value={urlLink.url} />
           </div>
         </div>
