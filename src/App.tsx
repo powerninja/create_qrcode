@@ -38,6 +38,9 @@ export const App = () => {
     color6: '',
   });
 
+  //選択されたQRコードを保存するuseState
+  const [selectedQrCode, setSelectedQrCode] = useState<React.ReactElement | null>(null);
+
   //QRコード生成
   const generateQrCode = () => {
     if (urlLink.url.indexOf('http', 0) === -1) {
@@ -93,24 +96,31 @@ export const App = () => {
     switch (qrnum) {
       case 0:
         setqrCodebgColor({ color0: '1px solid #000', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        setSelectedQrCode(<QRNormal value={urlLink.url} />);
         break;
       case 1:
         setqrCodebgColor({ color0: '', color1: '1px solid #000', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        setSelectedQrCode(<QRDsj value={urlLink.url} />);
         break;
       case 2:
         setqrCodebgColor({ color0: '', color1: '', color2: '1px solid #000', color3: '', color4: '', color5: '', color6: '' });
+        setSelectedQrCode(<QRBubble value={urlLink.url} />);
         break;
       case 3:
         setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '1px solid #000', color4: '', color5: '', color6: '' });
+        setSelectedQrCode(<QR25D value={urlLink.url} />);
         break;
       case 4:
         setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '1px solid #000', color5: '', color6: '' });
+        setSelectedQrCode(<QRRandRect value={urlLink.url} />);
         break;
       case 5:
         setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '1px solid #000', color6: '' });
+        setSelectedQrCode(<QRFunc value={urlLink.url} />);
         break;
       case 6:
         setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '1px solid #000' });
+        setSelectedQrCode(<QRLine value={urlLink.url} />);
         break;
     }
   };
@@ -196,8 +206,8 @@ export const App = () => {
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
-        <div ref={svgRef} className="d-flex flex-row">
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(0)} style={{ padding: '1px', border: qrCodebgColor.color0 }}>
+        <div className="d-flex flex-row">
+          <div id="1" className="my-box w-25" onClick={() => setQrcodeStyle(0)} style={{ padding: '1px', border: qrCodebgColor.color0 }}>
             <QRNormal value={urlLink.url} />
           </div>
           <div className="my-box w-25" onClick={() => setQrcodeStyle(1)} style={{ padding: '1px', border: qrCodebgColor.color1 }}>
@@ -219,6 +229,8 @@ export const App = () => {
             <QRLine value={urlLink.url} />
           </div>
         </div>
+        <p>選択したQRコード</p>
+        <div ref={svgRef}>{selectedQrCode}</div>
       </div>
     </div>
   );
