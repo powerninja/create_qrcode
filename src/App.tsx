@@ -41,6 +41,7 @@ export const App = () => {
   //選択されたQRコードを保存するuseState
   const [selectedQrCode, setSelectedQrCode] = useState<React.ReactElement | null>(null);
 
+  //ダウンロードボタンの制御
   const [downloadButton, setDownloadButton] = useState<string>('btn btn-secondary disabled');
 
   //QRコード生成
