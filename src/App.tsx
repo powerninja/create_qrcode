@@ -92,25 +92,25 @@ export const App = () => {
   const setQrcodeStyle = (qrnum: number) => {
     switch (qrnum) {
       case 0:
-        setqrCodebgColor({ color0: 'gray', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        setqrCodebgColor({ color0: '1px solid #000', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
         break;
       case 1:
-        setqrCodebgColor({ color0: '', color1: 'gray', color2: '', color3: '', color4: '', color5: '', color6: '' });
+        setqrCodebgColor({ color0: '', color1: '1px solid #000', color2: '', color3: '', color4: '', color5: '', color6: '' });
         break;
       case 2:
-        setqrCodebgColor({ color0: '', color1: '', color2: 'gray', color3: '', color4: '', color5: '', color6: '' });
+        setqrCodebgColor({ color0: '', color1: '', color2: '1px solid #000', color3: '', color4: '', color5: '', color6: '' });
         break;
       case 3:
-        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: 'gray', color4: '', color5: '', color6: '' });
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '1px solid #000', color4: '', color5: '', color6: '' });
         break;
       case 4:
-        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: 'gray', color5: '', color6: '' });
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '1px solid #000', color5: '', color6: '' });
         break;
       case 5:
-        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: 'gray', color6: '' });
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '1px solid #000', color6: '' });
         break;
       case 6:
-        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '', color6: 'gray' });
+        setqrCodebgColor({ color0: '', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '1px solid #000' });
         break;
     }
   };
@@ -192,29 +192,30 @@ export const App = () => {
           margin: '0 auto',
           maxWidth: 800,
           width: '100%',
+          padding: '5px',
           visibility: visible ? 'visible' : 'hidden',
         }}
       >
         <div ref={svgRef} className="d-flex flex-row">
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(0)} style={{ backgroundColor: qrCodebgColor.color0 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(0)} style={{ padding: '1px', border: qrCodebgColor.color0 }}>
             <QRNormal value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(1)} style={{ backgroundColor: qrCodebgColor.color1 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(1)} style={{ padding: '1px', border: qrCodebgColor.color1 }}>
             <QRDsj value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(2)} style={{ backgroundColor: qrCodebgColor.color2 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(2)} style={{ padding: '1px', border: qrCodebgColor.color2 }}>
             <QRBubble value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(3)} style={{ backgroundColor: qrCodebgColor.color3 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(3)} style={{ padding: '1px', border: qrCodebgColor.color3 }}>
             <QR25D value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(4)} style={{ backgroundColor: qrCodebgColor.color4 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(4)} style={{ padding: '1px', border: qrCodebgColor.color4 }}>
             <QRRandRect value={urlLink.url} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(5)} style={{ backgroundColor: qrCodebgColor.color5 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(5)} style={{ padding: '1px', border: qrCodebgColor.color5 }}>
             <QRFunc value={urlLink.url} funcType={'B'} />
           </div>
-          <div className="my-box w-25" onClick={() => setQrcodeStyle(6)} style={{ backgroundColor: qrCodebgColor.color6 }}>
+          <div className="my-box w-25" onClick={() => setQrcodeStyle(6)} style={{ padding: '1px', border: qrCodebgColor.color6 }}>
             <QRLine value={urlLink.url} />
           </div>
         </div>
