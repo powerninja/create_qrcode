@@ -44,6 +44,13 @@ export const App = () => {
   //ダウンロードボタンの制御
   const [downloadButton, setDownloadButton] = useState<string>('btn btn-secondary disabled');
 
+  //inputフォーム入力
+  const setInputUrl = (urlValue: string) => {
+    setUrlLink({ url: urlValue });
+    setVisible(false);
+    setDownloadButton('btn btn-secondary disabled');
+  };
+
   //QRコード生成
   const generateQrCode = useCallback(() => {
     if (urlLink.url.indexOf('http', 0) === -1) {
@@ -96,7 +103,7 @@ export const App = () => {
     }
   };
 
-  const setQrcodeStyle = useCallback((qrnum: number) => {
+  const setQrcodeStyle = (qrnum: number) => {
     switch (qrnum) {
       case 0:
         setqrCodebgColor({ color0: '1px solid #000', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
@@ -128,7 +135,7 @@ export const App = () => {
         break;
     }
     setDownloadButton('btn btn-secondary');
-  }, []);
+  };
 
   return (
     <div>
@@ -159,10 +166,12 @@ export const App = () => {
           placeholder="https://example.com"
           aria-describedby="basic-addon2"
           value={urlLink.url}
-          onChange={(event) => setUrlLink({ url: event.target.value })}
+          onChange={(event) => {
+            setInputUrl(event.target.value);
+          }}
         />
       </div>
-
+      {/* onChange={(event) => setUrlLink({ url: event.target.value }) */}
       <div className="button-container">
         <button
           className="btn btn-primary ms-3"
