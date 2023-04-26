@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import './App.css';
 
 //QRコード生成ライブラリ https://github.com/ciaochaos/qrbtf
@@ -45,13 +45,13 @@ export const App = () => {
   const [downloadButton, setDownloadButton] = useState<string>('btn btn-secondary disabled');
 
   //QRコード生成
-  const generateQrCode = () => {
+  const generateQrCode = useCallback(() => {
     if (urlLink.url.indexOf('http', 0) === -1) {
       alert('URLを入力してください');
       return;
     }
     setVisible(true);
-  };
+  }, [urlLink]);
 
   //表示していたQRコードを非表示
   const clearQrCode = () => {
@@ -96,7 +96,7 @@ export const App = () => {
     }
   };
 
-  const setQrcodeStyle = (qrnum: number) => {
+  const setQrcodeStyle = useCallback((qrnum: number) => {
     switch (qrnum) {
       case 0:
         setqrCodebgColor({ color0: '1px solid #000', color1: '', color2: '', color3: '', color4: '', color5: '', color6: '' });
@@ -128,7 +128,7 @@ export const App = () => {
         break;
     }
     setDownloadButton('btn btn-secondary');
-  };
+  }, []);
 
   return (
     <div>
