@@ -229,7 +229,10 @@ export const App = () => {
             <QRLine value={urlLink.url} />
           </div>
         </div>
-        <p>選択したQRコード</p>
+        {/* <p>選択したQRコード</p>
+        TODO: 上記をかっこよく表示させたい
+        TODO: もう少し小さくてもいいかも
+        TODO: QRコードを選択していない状態の場合、ダウンロードボタンを非活性にしたい*/}
         <div ref={svgRef}>{selectedQrCode}</div>
       </div>
     </div>
