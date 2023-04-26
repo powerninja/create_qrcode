@@ -41,6 +41,8 @@ export const App = () => {
   //選択されたQRコードを保存するuseState
   const [selectedQrCode, setSelectedQrCode] = useState<React.ReactElement | null>(null);
 
+  const [downloadButton, setDownloadButton] = useState<string>('btn btn-secondary disabled');
+
   //QRコード生成
   const generateQrCode = () => {
     if (urlLink.url.indexOf('http', 0) === -1) {
@@ -48,12 +50,14 @@ export const App = () => {
       return;
     }
     setVisible(true);
+    setDownloadButton('btn btn-secondary');
   };
 
   //表示していたQRコードを非表示
   const clearQrCode = () => {
     setVisible(false);
     setUrlLink({ url: '' });
+    setDownloadButton('btn btn-secondary disabled');
   };
 
   //生成したQRコードをダウンロード
@@ -123,6 +127,7 @@ export const App = () => {
         setSelectedQrCode(<QRLine value={urlLink.url} />);
         break;
     }
+    setDownloadButton('btn btn-secondary');
   };
 
   return (
@@ -182,7 +187,7 @@ export const App = () => {
           クリア
         </button>
         <a
-          className="btn btn-secondary"
+          className={downloadButton}
           download="qr-code.jpg"
           href={downloadUrl}
           onClick={downloadQrCode}
