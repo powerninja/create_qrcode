@@ -106,6 +106,8 @@ export const useQRCodeHandler = () => {
     }
   };
 
+  // 押下されたQRコードに枠をつける処理
+  // TODO: もう少し簡単な処理にできるかも
   const setQrcodeStyle = (qrnum: number) => {
     switch (qrnum) {
       case 0:
