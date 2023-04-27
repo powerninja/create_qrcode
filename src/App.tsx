@@ -64,7 +64,6 @@ export const App = () => {
           onClick={generateQrCode}
           style={{
             height: 'auto',
-            padding: '20',
             maxWidth: 200,
           }}
         >
@@ -75,7 +74,6 @@ export const App = () => {
           onClick={clearQrCode}
           style={{
             height: 'auto',
-            padding: '20',
             maxWidth: 200,
           }}
         >
@@ -88,7 +86,6 @@ export const App = () => {
           onClick={() => downloadQrCode(svgRef)}
           style={{
             height: 'auto',
-            padding: '20',
             maxWidth: 200,
           }}
         >
