@@ -21,8 +21,10 @@ type BgColor = {
 };
 
 export const useQRCodeHandler = () => {
+  //inputフォームに入力されたurl
   const [urlLink, setUrlLink] = useState<Linktype>({ url: '' });
 
+  //QRコードの表示非表示を制御
   const [visible, setVisible] = useState<boolean>(false);
 
   //ダウンロードボタンの制御
@@ -42,6 +44,7 @@ export const useQRCodeHandler = () => {
   //選択されたQRコードを保存するuseState
   const [selectedQrCode, setSelectedQrCode] = useState<React.ReactElement | null>(null);
 
+  //ダウンロードリンク
   const [downloadUrl, setDownloadUrl] = useState<string>('');
 
   //inputフォーム入力
