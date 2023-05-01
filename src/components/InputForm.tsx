@@ -1,6 +1,17 @@
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 
-export const InputForm: FC<any> = (props: any) => {
+interface QRCodeDisplayProps {
+  url: string;
+  setInputUrl: (urlValue: string) => void;
+  generateQrCode: () => void;
+  clearQrCode: () => void;
+  downloadQrCode: (element: RefObject<HTMLDivElement>) => void;
+  downloadUrl: string;
+  downloadButton: string;
+  svgRef: RefObject<HTMLDivElement>;
+}
+
+export const InputForm: FC<QRCodeDisplayProps> = (props) => {
   const { url, setInputUrl, generateQrCode, clearQrCode, downloadQrCode, downloadUrl, downloadButton, svgRef } = props;
 
   return (

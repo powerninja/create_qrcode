@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, RefObject } from 'react';
 
 //QRコード生成ライブラリ https://github.com/ciaochaos/qrbtf
 import { QR25D, QRRandRect, QRBubble, QRDsj, QRNormal, QRFunc, QRLine } from 'react-qrbtf';
@@ -71,8 +71,8 @@ export const useQRCodeHandler = () => {
   }, []);
 
   //生成したQRコードをダウンロード
-  const downloadQrCode = async (element: any) => {
-    if (element) {
+  const downloadQrCode = (element: RefObject<HTMLDivElement>) => {
+    if (element && element.current) {
       const svgElement = element.current.querySelector('svg');
 
       if (svgElement) {
@@ -95,7 +95,7 @@ export const useQRCodeHandler = () => {
           const svgDocument = parser.parseFromString(svgData, 'image/svg+xml');
           // canvg を使ってSVGデータをcanvasに描画
           const canvgInstance = new Canvg(ctx, svgDocument);
-          await canvgInstance.start();
+          canvgInstance.start();
 
           const pngUrl = canvas.toDataURL('image/png');
           setDownloadUrl(pngUrl);
@@ -107,7 +107,6 @@ export const useQRCodeHandler = () => {
   };
 
   // 押下されたQRコードに枠をつける処理
-  // TODO: もう少し簡単な処理にできるかも
   const setQrcodeStyle = (qrnum: number) => {
     switch (qrnum) {
       case 0:

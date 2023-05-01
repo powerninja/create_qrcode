@@ -1,7 +1,24 @@
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 import { QR25D, QRRandRect, QRBubble, QRDsj, QRNormal, QRFunc, QRLine } from 'react-qrbtf';
 
-export const QRCodeDisplay: FC<any> = (props: any) => {
+interface QRCodeDisplayProps {
+  url: string;
+  setQrcodeStyle: (qrnum: number) => void;
+  qrCodebgColor: {
+    color0: string;
+    color1: string;
+    color2: string;
+    color3: string;
+    color4: string;
+    color5: string;
+    color6: string;
+  };
+  svgRef: RefObject<HTMLDivElement>;
+  selectedQrCode: React.ReactNode;
+  visible: boolean;
+}
+
+export const QRCodeDisplay: FC<QRCodeDisplayProps> = (props) => {
   const { url, setQrcodeStyle, qrCodebgColor, visible, svgRef, selectedQrCode } = props;
 
   return (

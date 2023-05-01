@@ -4,7 +4,7 @@ import { useQRCodeHandler } from './hooks/useQRCodeHandler';
 import { InputForm } from './components/InputForm';
 import { QRCodeDisplay } from './components/QRCodeDisplay';
 
-export const App: FC<any> = () => {
+export const App: FC = () => {
   const svgRef = useRef<HTMLDivElement | null>(null);
 
   //カスタムhook呼び出し
