@@ -35,19 +35,14 @@ export const App: FC<any> = () => {
         svgRef={svgRef}
       />
 
-      <div
-        style={{
-          height: 'auto',
-          margin: '0 auto',
-          maxWidth: 800,
-          width: '100%',
-          padding: '5px',
-          visibility: visible ? 'visible' : 'hidden',
-        }}
-      >
-        <QRCodeDisplay url={urlLink.url} setQrcodeStyle={setQrcodeStyle} qrCodebgColor={qrCodebgColor} visible={visible} />
-        <div ref={svgRef}>{selectedQrCode}</div>
-      </div>
+      <QRCodeDisplay
+        url={urlLink.url}
+        setQrcodeStyle={setQrcodeStyle}
+        qrCodebgColor={qrCodebgColor}
+        visible={visible}
+        svgRef={svgRef}
+        selectedQrCode={selectedQrCode}
+      />
     </div>
   );
 };
